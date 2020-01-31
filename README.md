@@ -25,3 +25,46 @@
 - @AllArgsConstructor
 - @NoArgsConstructor
 - @RequiredArgsConstructor
+
+## 验证框架
+
+### 验证模型
+- 分层验证
+![分层验证模型](https://raw.githubusercontent.com/daffupman/markdown-img/master/20200131110127.png)
+
+存在大量重复的验证代码
+
+- JavaBean验证 
+![JavaBean验证模型](https://raw.githubusercontent.com/daffupman/markdown-img/master/20200131131603.png)
+
+### Bean Validation
+
+Bean Validation为JavaBean验证定义了相应的元数据模型和API。
+
+### JCP、JSR
+
+JCP(Java Community Process)使用JSR（Java Specification Requests）作为正式规范文档，描述被提议加入到Java体系中的规范和技术。
+- JSR303，Bean Validation1.0，JavaEE6
+- JSR349，Bean Validation1.1，JavaEE7
+- JSR380，Bean Validation2.0，JavaEE8
+
+Spring Validation在Hibernate Validator的基础上，对其进行了二次封装，以满足在Spring环境中更简单、高效的对数据进行验证。
+
+### 常用约束注解
+
+- 空值校验类：@Null、@NotNull、@NotEmpty、@NotBlank等
+- 范围校验类：@Min、@Size、@Digits、@Future、@Negative等
+- 其他校验：@Email、@URL、@AssertTrue、@Pattern等
+- 级联验证：@Valid
+- 分组验证：groups = T.class
+- 组序列：@GroupSequence
+- 校验参数：
+- 校验返回值：
+- 校验构造方法：
+
+#### 完成验证的步骤：
+1. 约束注解的定义
+2. 约束验证规则（约束验证器）
+3. 约束注解的声明
+4. 约束验证流程
+> 代码见 `Phone.java` 和 `PhoneValidator.java`。
