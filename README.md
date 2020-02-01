@@ -113,3 +113,36 @@ Guava引入了很多jdk没有的、但明显有用的的新集合类型。这些
     - 对源（Source）与汇（Sink）的抽象
         - 源是可读的：ByteSource/CharSource
         - 汇是可写的：ByteSink/CharSink
+        
+## 线程池
+
+通过事先开启多个线程等待请求，可以降低资源消耗，提供响应速度
+，提高线程的可管理性。
+
+线程池的核心参数：
+- corePoolSize：核心线程数
+- maximumPoolSize：最大线程数
+- keepAliveTime：线程空闲后的存活时间
+- unit：时间单位
+- workQueue：用于存放任务的阻塞队列
+- threadFactory：线程工程类
+- handler：当队列和最大线程池都满了之后的饱和策略
+
+线程池的执行流程：
+
+线程池可选的阻塞队列：
+- ArrayBlockingQueue：有界队列
+- LinkedBlockingQueue：有/无界队列
+- Synchronous：同步移交队列
+
+线程池可选择的饱和策略：
+- AbortPolicy：终止策略（默认）；
+- DiscardPolicy：抛弃策略；
+- DiscardOldestPolicy：抛弃旧任务策略；
+- CallerRunsPolicy：调用者运行策略。
+
+线程池状态
+
+![](https://raw.githubusercontent.com/daffupman/markdown-img/master/20200201145219.png)
+
+### 设计一个简单的线程池
