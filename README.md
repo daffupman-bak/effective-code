@@ -68,3 +68,48 @@ Spring Validation在Hibernate Validator的基础上，对其进行了二次封�
 3. 约束注解的声明
 4. 约束验证流程
 > 代码见 `Phone.java` 和 `PhoneValidator.java`。
+
+## Google Guava
+
+Guava工程包含了若干被Google的Java项目广泛原地的核心库，如：集合、缓存、原生类型支持、并发库、通用注解、字符串处理、IO等。
+
+### 使用和避免null
+
+Guava引入Optional<T>表明可能为null的T类型引用。Optional实例可能包含非null的引用（引用存在），也可能什么也不包括（引用缺失）。Java8已经引入了Optional类。
+
+### 不可变集合
+
+创建对象的不可变拷贝是一项很好的防御性编程技巧。Guava为所有jdk标准集合类型和Guava新集合类型都提供了简单易用的不可变版本。不可变对象的优点：
+- 当对象被不可信的库调用时，不可变形式是安全的；
+- 不可变对象被多个线程调用时，不存在竞态条件问题；
+- 不可变集合不需要考虑变化，因此可以节省时间和空间
+- 不可变对象因为有固定不变，可以作为常量来安全使用。
+
+### 新集合类型
+
+Guava引入了很多jdk没有的、但明显有用的的新集合类型。这些新类型是为了和jdk集合狂叫宫村，而没有往jdk集合抽象中硬塞其他概念。
+- Multiset：结合set和list的一些特性，即无序且可重复。
+    - 视角一：没有元素顺序限制的ArrayList
+        - add(E)
+        - iterator()
+        - size()
+    - 视角二：Map<E, Integer>，键为元素，值为计数
+        - count(Object)：返回Object在集合中出现的次数
+        - entrySet()：返回Set<Multiset.Entry<E>>，和Map的entrySet类似
+        - elementSet()：返回所有不重复元素的Set<E>，和Map的keySet类似
+    - 多种实现：
+        - HashMultiset
+        - TreeMultiset
+        - LinkedHashMultiset
+        - ConcurrentHashMultiset
+        - ImmutableMultiset
+- 集合工具类
+    - Lists：
+    - Sets：
+    - Maps：
+- IO流相关
+    - ByteStreams：提供对InputStream和OutputStream的操作；
+    - CharStreams：提供对Reader和Writer的操作；
+    - 对源（Source）与汇（Sink）的抽象
+        - 源是可读的：ByteSource/CharSource
+        - 汇是可写的：ByteSink/CharSink
